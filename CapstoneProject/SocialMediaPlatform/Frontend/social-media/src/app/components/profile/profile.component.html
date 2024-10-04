@@ -1,0 +1,88 @@
+<app-header></app-header>
+<div class="container mt-4 py-3">
+    <!-- Profile Header -->
+    <div class="profile-header d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex align-items-center">
+            <!-- Profile Picture -->
+            <img [src]="profile.avatarUrl" alt="Profile Picture" class="rounded-circle img-thumbnail" style="width: 150px; height: 150px;">
+            <div class="ms-4">
+                <!-- Username and Edit Button -->
+                <h4 class="mb-0">{{ profile.realname }}</h4>
+                <p class="text-muted">{{ profile.bio }}</p>
+                @if (isCurrentUser) {
+                    <button class="btn btn-outline-secondary" (click)="onEditProfile()">Edit Profile</button>
+                }
+                @if (!isCurrentUser && isFollowing) {
+                    <button class="btn btn-outline-secondary" (click)="onUnfollowUser()">Unfollow</button>
+                }
+                @if (!isCurrentUser && !isFollowing) {
+                    <button class="btn btn-primary" (click)="onFollowUser()">Follow</button>
+                }
+            </div>
+        </div>
+        <!-- User Stats -->
+        <div class="text-center">
+            <div class="d-flex justify-content-between">
+                <div class="mx-2">
+                    <h6 class="mb-0">{{ posts.length }}</h6>
+                    <small>Posts</small>
+                </div>
+                <div class="mx-2">
+                    <h6 class="mb-0">{{ profile.followersCount == null ? 0 : profile.followersCount }}</h6>
+                    <small>Followers</small>
+                </div>
+                <div class="mx-2">
+                    <h6 class="mb-0">{{ profile.followingCount == null ? 0 : profile.followingCount }}</h6>
+                    <small>Following</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs for switching between Posts, IGTV, and Tagged -->
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" (click)="currentTab = 'posts'">Posts</a>
+        </li>
+        <!-- <li class="nav-item">
+            <a class="nav-link" (click)="currentTab = 'igtv'">IGTV</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="currentTab = 'tagged'">Tagged</a>
+        </li> -->
+    </ul>
+
+    <!-- Posts Grid -->
+     @if (currentTab === 'posts') {
+        <div class="post-grid mt-4 row row-cols-3 g-2">
+            @for (post of posts; track $index) {
+                <div class="col">
+                    <div class="post-item">
+                        <img [src]="post.imageUrl" alt="Post Image" class="img-fluid w-100">
+                    </div>
+                </div>
+            }
+        </div>
+     }
+
+    <!-- IGTV Grid (Optional) -->
+     @if (currentTab === 'igtv') {
+        <div class="mt-4">
+            <p>IGTV Videos (if available)</p>
+        </div>
+     }
+
+    <!-- Tagged Photos Grid (Optional) -->
+    @if (currentTab === 'tagged') {
+        <div class="mt-4">
+            <p>Tagged Photos (if available)</p>
+        </div>
+    }
+
+    <!-- No posts message -->
+     @if (posts.length === 0 && currentTab === 'posts') {
+        <div class="text-center mt-4">
+             <p class="text-muted">No posts yet</p>
+        </div>
+    }
+</div>

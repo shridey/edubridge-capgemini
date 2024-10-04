@@ -1,0 +1,11 @@
+/* home.component.css */
+.card {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .card img {
+    max-height: 500px;
+    object-fit: cover;
+  }
+  

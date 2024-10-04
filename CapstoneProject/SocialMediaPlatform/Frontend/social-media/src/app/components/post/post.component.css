@@ -1,0 +1,19 @@
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+  
+.post-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+  
+.profile-header img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+  

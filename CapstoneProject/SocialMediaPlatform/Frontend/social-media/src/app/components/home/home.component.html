@@ -1,0 +1,37 @@
+<app-header></app-header>
+<div class="container mt-4 py-3">
+    <h1>Posts from Users</h1>
+    
+    @if (posts.length > 0) {
+        <!-- Loop through posts and display them -->
+        @for (post of posts; track $index) {
+            <div class="card mt-4">
+                <div class="card-body position-relative">
+                    
+                    @if (post.username == username) {
+                        <div class="btn-group position-absolute" style="top: 10px; right: 10px;">
+                            <button class="btn btn-sm btn-warning" (click)="onEditPost(post)">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn btn-sm btn-danger" (click)="onDeletePost(post)">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </button>
+                        </div>
+                    }
+                    <h5 class="card-title">&#64;{{ post.username }}</h5>
+                    <p class="card-text">{{ post.post.caption }}</p>
+                    <img [src]="post.post.imageUrl" alt="Post image" class="img-fluid">
+                    <p class="text-muted mt-2">{{ post.post.createdAt | date:'short' }}</p>
+                </div>
+            </div>
+        }
+    } @else {
+        <div class="card mt-4">
+            <div class="card-body d-flex justify-content-center">
+                <button class="btn btn-success" (click)="createPost()">
+                    <i class="fas fa-edit"></i> Create Post
+                </button>
+            </div>
+        </div>
+    }
+</div>
