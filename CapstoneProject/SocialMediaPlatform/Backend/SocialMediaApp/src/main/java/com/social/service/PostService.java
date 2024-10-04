@@ -18,4 +18,8 @@ public interface PostService {
 
 	ResponseEntity<List<PostDTO>> deletePost(Integer postId);
 
+	ResponseEntity<Post> getPost(Integer postId) throws GlobalExceptionHandler;
+
+	ResponseEntity<Post> updatePost(Integer postId, Post post) throws GlobalExceptionHandler;
+
 }

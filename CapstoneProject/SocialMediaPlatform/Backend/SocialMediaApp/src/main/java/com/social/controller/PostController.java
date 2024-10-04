@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +40,16 @@ public class PostController {
 	@GetMapping("/{username}")
 	public ResponseEntity<List<Post>> getAllPosts(@PathVariable String username) throws GlobalExceptionHandler {
 		return this.postService.getAllPosts(username);
+	}
+	
+	@GetMapping("/byId/{postId}")
+	public ResponseEntity<Post> getPost(@PathVariable Integer postId) throws GlobalExceptionHandler {
+		return this.postService.getPost(postId);
+	}
+	
+	@PutMapping("/{postId}")
+	public ResponseEntity<Post> updatePost(@PathVariable Integer postId, @RequestBody Post post) throws GlobalExceptionHandler {
+		return this.postService.updatePost(postId, post);
 	}
 	
 	@DeleteMapping("/{postId}")

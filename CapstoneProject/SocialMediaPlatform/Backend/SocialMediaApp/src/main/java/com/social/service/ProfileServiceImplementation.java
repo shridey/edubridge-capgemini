@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.social.dao.Profile;
+import com.social.error.GlobalExceptionHandler;
 import com.social.repository.ProfileRepository;
 
 @Service
@@ -25,7 +26,7 @@ public class ProfileServiceImplementation implements ProfileService {
 	}
 
 	@Override
-	public ResponseEntity<Profile> update(String username, Profile profile) {
+	public ResponseEntity<Profile> update(String username, Profile profile) throws GlobalExceptionHandler {
 		Profile existingProfile = this.profileRepository.findByUserUsername(username).orElse(null);
 		
 		if (profile != null) {
@@ -49,7 +50,7 @@ public class ProfileServiceImplementation implements ProfileService {
 			
 			return ResponseEntity.ok(existingProfile);
 		} else {
-			return ResponseEntity.status(404).body(null);
+			throw new GlobalExceptionHandler("Profile not found!");
 		}
 	}
 	

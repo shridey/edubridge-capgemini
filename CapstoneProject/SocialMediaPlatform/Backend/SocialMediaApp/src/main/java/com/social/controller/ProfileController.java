@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.social.dao.Profile;
+import com.social.error.GlobalExceptionHandler;
 import com.social.service.ProfileService;
 
 @CrossOrigin("http://localhost:4200")
@@ -27,7 +28,7 @@ public class ProfileController {
 	}
 	
 	@PutMapping("/update/{username}")
-	public ResponseEntity<Profile> update(@PathVariable String username, @RequestBody Profile profile) {
+	public ResponseEntity<Profile> update(@PathVariable String username, @RequestBody Profile profile) throws GlobalExceptionHandler {
 		System.out.println(profile.toString());
 		return this.profileService.update(username, profile);
 	}

@@ -80,6 +80,38 @@ public class PostServiceImplementation implements PostService {
 		}
 		return ResponseEntity.status(404).body(null);
 	}
+
+	@Override
+	public ResponseEntity<Post> getPost(Integer postId) throws GlobalExceptionHandler {
+		Post post = this.postRepository.findById(postId).orElse(null);
+		
+		if (post == null) {
+			throw new GlobalExceptionHandler("Post not found!");
+		}
+		
+		return ResponseEntity.ok(post);
+	}
+
+	@Override
+	public ResponseEntity<Post> updatePost(Integer postId, Post post) throws GlobalExceptionHandler {
+		Post existingPost = this.postRepository.findById(postId).orElse(null);
+		
+		if (existingPost == null) {
+			throw new GlobalExceptionHandler("Post not found!");
+		}
+		
+		if (post.getCaption() != null && !post.getCaption().isBlank()) {
+			existingPost.setCaption(post.getCaption());
+		}
+		
+		if (post.getImageUrl() != null && !post.getImageUrl().isBlank()) {
+			existingPost.setImageUrl(post.getImageUrl());
+		}
+		
+		Post updatedPost = this.postRepository.save(existingPost);
+		
+		return ResponseEntity.ok(updatedPost);
+	}
 	
 	
 
