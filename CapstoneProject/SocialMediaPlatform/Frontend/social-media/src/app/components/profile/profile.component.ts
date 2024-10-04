@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { ProfileService } from '../../services/profile.service';
 import { FormsModule } from '@angular/forms';
-import { Profile } from '../../modals/profile';
-import { Post } from '../../modals/post';
+import { Profile } from '../../models/profile';
+import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
 import { Router } from '@angular/router';
 
