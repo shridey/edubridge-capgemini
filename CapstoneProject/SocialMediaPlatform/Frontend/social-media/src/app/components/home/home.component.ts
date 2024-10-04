@@ -35,6 +35,7 @@ export class HomeComponent {
   }
 
   onEditPost(post: any) {
+    this.router.navigate(['/post', post.post.postId])
   }
 
   onDeletePost(post: any) {

@@ -14,6 +14,7 @@ export const routes: Routes = [
     { path: "register", component: RegisterComponent },
     { path: "home", component: HomeComponent, canActivate: [RouteGuardService] },
     { path: "post", component: PostComponent, canActivate: [RouteGuardService] },
+    { path: "post/:postId", component: PostComponent, canActivate: [RouteGuardService] },
     { path: "profile", component: ProfileComponent, canActivate: [RouteGuardService] },
     { path: "edit-profile", component: ProfileUpdateComponent, canActivate: [RouteGuardService] },
 

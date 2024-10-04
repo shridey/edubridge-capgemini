@@ -24,8 +24,16 @@ export class PostService {
     return this.httpClient.get<Post[]>(`${environment.api_posts}/${username}`)
   }
 
+  getPostById(postId: number) {
+    return this.httpClient.get<Post>(`${environment.api_posts}/byId/${postId}`)
+  }
+
   getAllPosts(): Observable<any> {
     return this.httpClient.get(`${environment.api_posts}`);
+  }
+
+  updatePost(postId: number, post: any) {
+    return this.httpClient.put(`${environment.api_posts}/${postId}`, post)
   }
 
   deletePost(postId: number): any {
