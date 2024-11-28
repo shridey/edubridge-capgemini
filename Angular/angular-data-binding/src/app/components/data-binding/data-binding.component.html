@@ -1,0 +1,15 @@
+<!-- Interpolation -->
+<h1>{{ title }}</h1>
+  
+<!-- Property Binding -->
+<img [src]="imageUrl" alt="Angular Logo" width="150">
+
+<br><br>
+
+<!-- Event Binding -->
+<button (click)="incrementCounter()" [disabled]="isButtonDisabled">{{ buttonText }}</button>
+<p>Button clicked {{ counter }} times.</p>
+
+<!-- Two-Way Data Binding -->
+<input [(ngModel)]="userName" placeholder="Enter your name">
+<p>Welcome, {{ userName }}!</p>

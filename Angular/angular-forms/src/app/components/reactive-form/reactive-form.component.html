@@ -1,0 +1,24 @@
+<h2>Reactive Form</h2>
+<form [formGroup]="reactiveForm" (ngSubmit)="onSubmitReactiveForm()">
+    <label for="reactiveName">Name: </label>
+    <input id="reactiveName" type="text" formControlName="name" required>
+    @if (reactiveForm.controls['name'].invalid && reactiveForm.controls['name'].touched) {
+        <div>Name is required.</div>
+    }
+
+    <label for="reactiveEmail">Email: </label>
+    <input id="reactiveEmail" type="email" formControlName="email" required>
+    @if (reactiveForm.controls['email'].invalid && reactiveForm.controls['email'].touched) {
+        <div>Valid Email is required.</div>
+    }
+
+    <button type="submit" [disabled]="reactiveForm.invalid">Submit</button>
+</form>
+
+@if (submittedReactive) {
+    <p>
+        <strong>Reactive Form Submitted Successfully!</strong><br>
+        Name: {{ reactiveData.name }}<br>
+        Email: {{ reactiveData.email }}
+    </p>
+}

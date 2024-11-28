@@ -1,0 +1,14 @@
+<div>
+    <h1>{{ title }}</h1>
+    <input [(ngModel)]="inputText" placeholder="Type something here...">
+    <p>Input text: {{ inputText }}</p>
+  
+    <button (click)="toggleChildComponent()">
+        {{ showChild ? 'Destroy' : 'Recreate' }} Child Component
+    </button>
+  
+    @if (showChild) {
+        <app-child [parentData]="inputText"></app-child>
+    }
+</div>
+  
